@@ -103,10 +103,16 @@ class _MyWidgetState extends State<MyWidget> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      _list.add(_controller.text);
-                      _controller.clear();
-                    });
+                    // Insert
+                    final document = <String, dynamic>{
+                      'content': _controller.text,
+                      'createdAt': Timestamp.fromDate(DateTime.now()),
+                    };
+                    FirebaseFirestore.instance
+                        .collection('dream')
+                        .doc()
+                        .set(document);
+                    setState(_controller.clear);
                   },
                   child: const Text('送信'),
                 )
