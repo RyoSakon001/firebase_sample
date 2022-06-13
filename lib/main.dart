@@ -1,14 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // TODO
 
 import 'firebase_options.dart';
 
 // asyncで、終わるまで待つ
 void main() async {
   // インスタンス化？
+  // ページを表示する前の処理
   WidgetsFlutterBinding.ensureInitialized();
   // Firebaseの初期化？Firebaseと接続し、時間がかかるからawaitの中に入れる？
+
+  // TODO
+  // thenという書き方も可能
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -17,7 +21,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // なにをしている？
+  // TODO
+  // スーパークラス（継承元＝StatelessWidget）
   const MyApp({super.key});
 
   @override
@@ -29,7 +34,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyWidget extends StatefulWidget {
-  // なにをしている？
+  // TODO
+  // コンストラクタ
   const MyWidget({super.key});
 
   @override
@@ -37,12 +43,18 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  // TODO
+  // 型。
+  // final _controller = TextEditingController();
+  // instance
   final TextEditingController _controller = TextEditingController();
 
   final _list = List.generate(10, (index) => 'test $index');
 
   @override
+  // 廃棄
   void dispose() {
+    // TODO
     _controller.dispose();
     super.dispose();
   }
@@ -79,6 +91,7 @@ class _MyWidgetState extends State<MyWidget> {
                     }
 
                     // まず、配列にFirebaseの内容をいれる?
+                    // TODO
                     final list = snapshot.requireData.docs
                         .map<String>((DocumentSnapshot document) {
                       final documentData =
@@ -86,7 +99,8 @@ class _MyWidgetState extends State<MyWidget> {
                       return documentData['content']! as String;
                     }).toList();
 
-                    // 自分が追加した内容もはいれつにくわえる？
+                    // 自分が追加した内容も配列にくわえる？
+                    // TODO
                     final reverseList = list.reversed.toList();
 
                     return ListView.builder(
@@ -129,7 +143,7 @@ class _MyWidgetState extends State<MyWidget> {
                         .set(document);
                     setState(_controller.clear);
                   },
-                  child: const Text('送信'),
+                  child: const Text('送信bbbbaaaa'),
                 )
               ],
             )
